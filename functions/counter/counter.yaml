@@ -15,8 +15,14 @@ kind: Function
 metadata:
   name: counter
 spec:
-  protocol: http
+  protocol: pipes
   input: words
   output: counts
+  idleTimeoutMs: 30000
   container:
     image: projectriff/counter:1.0.0
+    env:
+    - name: SPRING_CLOUD_STREAM_BINDER_FILE_PREFIX
+      value: /pipes
+    - name: SPRING_APPLICATION_JSON
+      value: '{"logging.level.org.springframework.cloud.stream.binder.file": "DEBUG"}'

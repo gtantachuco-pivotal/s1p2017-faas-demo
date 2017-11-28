@@ -1,0 +1,34 @@
+= counter
+
+=== Build the Docker container for the function code
+
+ensure riff is running and the `riff` script from `projectriff/riff` is on your `PATH`
+
+from within the `functions/counter` directory execute:
+
+```
+./mvnw clean package
+eval $(minikube docker-env)
+faas build -v 1.0.0
+faas apply
+```
+
+=== Publish events and monitor results
+
+send input to the `words` topic (with the `publish` script in `projectriff/riff`):
+
+```
+publish words 'one'
+publish words 'two two'
+publish words 'three three three'
+```
+
+tail the `counts` topic (with the `topics` script in `projectriff/riff`):
+
+```
+topics tail -n counts
+```
+
+the output messages will arrive every 10 seconds, regardless of when the input messages are sent
+
+(the function has a 30 second idle timeout as defined in `counter.yaml`)
