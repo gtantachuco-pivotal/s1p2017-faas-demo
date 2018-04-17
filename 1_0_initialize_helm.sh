@@ -4,14 +4,6 @@ exe() { echo "\$ $@" ; "$@" ; }
 
 echo " "
 echo "------------------------------"
-echo "Adding riff charts to Helm"
-echo "------------------------------"
-echo " "
-exe helm repo add projectriff https://riff-charts.storage.googleapis.com
-exe helm repo update
-
-echo " "
-echo "------------------------------"
 echo "Creating Helm's tiller account"
 echo "------------------------------"
 echo " "
@@ -24,3 +16,11 @@ echo "Initializing Helm"
 echo "------------------------------"
 echo " "
 exe helm init --service-account=tiller
+
+echo " "
+echo "------------------------------"
+echo "Adding riff charts to Helm"
+echo "------------------------------"
+echo " "
+exe helm repo add projectriff https://riff-charts.storage.googleapis.com
+exe helm repo update
