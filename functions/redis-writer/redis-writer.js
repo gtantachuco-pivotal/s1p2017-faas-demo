@@ -3,7 +3,6 @@ const redisOpts = {
   port:process.env.COUNTERS_REDIS_SERVICE_PORT,
   auth_pass:process.env.REDIS_PASSWORD
 }
-
 const redisDB = require('redis').createClient(redisOpts)
 
 redisDB.on('error', (err) => { console.log(`redisDB error: ${err}`); })
@@ -21,8 +20,8 @@ if (typeof input !== 'object') throw new Error("Input is not a JSON object.");
 
 var { DEFAULT_HASH_KEY, DEFAULT_COMMAND } = process.env
 
-var op = input._operation || DEFAULT_COMMAND 
-delete input._operation; 
+var op = input._operation || DEFAULT_COMMAND
+delete input._operation;
 
 var hash = input._hash || DEFAULT_HASH_KEY
 delete input._hash;
@@ -32,7 +31,7 @@ if (input._list) {
   delete input._list
   redisDB.rpush(key, JSON.stringify(input), redisDone)
 }
-else 
+else
 {
   for (key in input) {
     if (/^_/.test(key)) continue;

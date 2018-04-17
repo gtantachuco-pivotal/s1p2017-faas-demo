@@ -1,4 +1,5 @@
 apiVersion: projectriff.io/v1
+#apiVersion: projectriff.io/v1alpha1
 kind: Topic
 metadata:
   name: votes
@@ -6,6 +7,7 @@ spec:
   partitions: 10
 ---
 apiVersion: projectriff.io/v1
+#apiVersion: projectriff.io/v1alpha1
 kind: Topic
 metadata:
   name: counted-votes

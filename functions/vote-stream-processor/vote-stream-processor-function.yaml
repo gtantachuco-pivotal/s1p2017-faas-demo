@@ -1,4 +1,5 @@
 apiVersion: projectriff.io/v1
+#apiVersion: projectriff.io/v1alpha1
 kind: Function
 metadata:
   name: vote-stream-processor
@@ -10,7 +11,7 @@ spec:
 #  idleTimeoutMs: 3600000
   idleTimeoutMs: 60000
   container:
-    image: projectriff/vote-stream-processor:0.1.0
+    image: gtantachuco/vote-stream-processor:0.1.0
     env:
     - name: SPRING_APPLICATION_JSON
       value: '{"logging.level.org.springframework.cloud.stream.binder.file":"DEBUG", "spring.cloud.stream.bindings.output.content-type":"application/json"}'
